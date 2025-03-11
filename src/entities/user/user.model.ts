@@ -3,6 +3,7 @@ import mongoose, { Schema, Document } from "mongoose";
 export interface IUser extends Document {
     user_id: string;
     name: string;
+    answers: string[];
     score: number;
 }
 
@@ -12,6 +13,7 @@ const UserSchema = new Schema<IUser>({
         required: true,
         unique: true},
     name: { type: String, required: true },
+    answers: {type: [String]},
     score: { type: Number, required: true },
 })
 
