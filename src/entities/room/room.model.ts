@@ -3,6 +3,7 @@ import { IUser } from "../user/user.model";
 
 interface IRoom extends Document {
     id_room: string;
+    bot: null;
     users: IUser[];
     master: IUser;
 }
