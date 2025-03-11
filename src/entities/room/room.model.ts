@@ -1,9 +1,10 @@
 import mongoose, { Schema, Document } from "mongoose";
+import { IUser } from "../user/user.model";
 
 interface IRoom extends Document {
     id_room: string;
-    users: mongoose.Types.ObjectId[];
-    master: mongoose.Types.ObjectId;
+    users: IUser[];
+    master: IUser;
 }
 
 const RoomSchema = new Schema<IRoom>({

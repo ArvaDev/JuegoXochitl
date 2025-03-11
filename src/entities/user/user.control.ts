@@ -24,6 +24,20 @@ export const getUsers = async (_req: Request, res: Response) => {
     }
 }
 
+export const getUserById = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params
+        const user = await UserModel.findOne({user_id: id});
+        if (!user) {
+            res.status(404).json({ message: "Usuario no encontrado" });
+            return 
+        }
+        res.status(200).json({message: "Usuario encontrado", data: user})
+    } catch(error) {
+        res.status(500).json({message: "Error al conseguir usuario", error: error})
+    }
+}
+
 export const joinRoom = async (req: Request, res: Response) => { 
     try {
         const { user_id, room_id } = req.body;
