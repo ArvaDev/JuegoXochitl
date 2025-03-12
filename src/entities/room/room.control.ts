@@ -5,8 +5,8 @@ import { generateId } from "../../utils/idgenerator";
 
 export const createRoom = async (req: Request, res: Response) => {
     try {
-        const { user_id } = req.body;
-        const user = await UserModel.findOne({ user_id: user_id });
+        const { id } = req.body;
+        const user = await UserModel.findById(id);
         if  (!user) {
             res.status(404).json({ message: "Usuario no encontrado" });
             return 
@@ -20,7 +20,7 @@ export const createRoom = async (req: Request, res: Response) => {
     }
 }
 
-export const getAllRooms = async (req: Request, res: Response) => {
+export const getAllRooms = async (_req: Request, res: Response) => {
     try {
         const rooms: any = await RoomModel.find();
         res.status(200).json(rooms);
