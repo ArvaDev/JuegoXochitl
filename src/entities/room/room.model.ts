@@ -4,6 +4,7 @@ import { IUser } from "../user/user.model";
 interface IRoom extends Document {
     id_room: string;
     bot: null;
+    messages: string[]
     users: IUser[];
     master: IUser;
 }
@@ -15,6 +16,7 @@ const RoomSchema = new Schema<IRoom>({
         unique: true
     },
     users: [{ type: Schema.Types.ObjectId, ref: "User" }],
+    messages: [{type: String}],
     master: { type: Schema.Types.ObjectId, ref: "User", required: true },
 });
 
