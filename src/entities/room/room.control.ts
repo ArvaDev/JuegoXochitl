@@ -7,7 +7,7 @@ export const createRoom = async (req: Request, res: Response) => {
     try {
         const { id, roomName } = req.body;
         const user = await UserModel.findById(id);
-        if (!user) {
+        if (!user) {    
             res.status(404).json({ message: "Usuario no encontrado" });
             return
         }
@@ -23,7 +23,7 @@ export const createRoom = async (req: Request, res: Response) => {
 export const getRoomByID = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
-        const room: any = await RoomModel.findById(id)
+        const room: any = await RoomModel.findOne({id_room: id})
         if (!room) {
             res.status(404).json({ message: "Sala no encontrada" })
             return
